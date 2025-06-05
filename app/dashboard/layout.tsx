@@ -74,7 +74,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     <>
       <div className="p-6 border-b border-gray-700">
         <Link href="/dashboard" className="text-2xl font-serif font-semibold text-accent">
-          Joana's Dashboard
+          Joana&#39;s Dashboard
         </Link>
       </div>
       <nav className="mt-6 flex-grow">
