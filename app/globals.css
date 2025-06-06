@@ -1,8 +1,21 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary-background-rgb: 15, 23, 42; /* Dark Slate Blue, like slate-900 */
+  --secondary-background-rgb: 30, 41, 59; /* Slightly Lighter Slate, like slate-800 */
+  --input-background-rgb: 51, 65, 85; /* Even Lighter Slate, like slate-700 */
+  --border-rgb: 71, 85, 105; /* Subtle Border, like slate-600 */
+
+  --primary-text-rgb: 226, 232, 240; /* Off-white, like slate-200 */
+  --secondary-text-rgb: 148, 163, 184; /* Muted Gray, like slate-400 */
+
+  --accent-rgb: 229, 192, 123; /* A warm, academic gold */
+  --link-rgb: 96, 165, 250; /* A clear, readable blue for links */
+
+  --success-rgb: 74, 222, 128; /* Green for success messages */
+  --error-rgb: 248, 113, 113;
 }
 
 @theme inline {
@@ -10,6 +23,12 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --accent-rgb: 229, 192, 123; /* A warm, academic gold */
+  --link-rgb: 96, 165, 250; /* A clear, readable blue for links */
+
+  --success-rgb: 74, 222, 128; /* Green for success messages */
+  --error-rgb: 248, 113, 113; /* Red for error messages */
 }
 
 @media (prefers-color-scheme: dark) {
