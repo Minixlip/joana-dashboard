@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.0",
     "@supabase/supabase-js": "^2.49.10",
     "@uiw/react-md-editor": "^4.0.7",
     "date-fns": "^4.1.0",
