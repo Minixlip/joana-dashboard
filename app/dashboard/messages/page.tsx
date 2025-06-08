@@ -12,7 +12,7 @@ import {
 } from 'react-icons/fa';
 import { formatDistanceToNow } from 'date-fns'; // For user-friendly dates
 
-// Define the type for a message object
+// Define the type for a message object, now including 'read'
 interface Message {
   id: number;
   created_at: string;
@@ -20,6 +20,7 @@ interface Message {
   email: string;
   subject: string | null;
   message: string;
+  read: boolean; // Added the read property
 }
 
 // A separate component for the message detail modal
@@ -35,7 +36,7 @@ const MessageDetailModal = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className='fixed inset-0 bg-black z-50 flex items-center justify-center p-4'
+      className='fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4'
       onClick={onClose}
     >
       <motion.div
@@ -46,17 +47,12 @@ const MessageDetailModal = ({
         className='bg-secondary-background w-full max-w-2xl rounded-xl shadow-2xl p-6 sm:p-8 relative'
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
       >
-        <motion.button
-          whileHover={{ color: 'white' }}
-          transition={{
-            ease: 'easeInOut',
-            duration: 3,
-          }}
+        <button
           onClick={onClose}
           className='absolute top-4 right-4 text-gray-400 hover:text-accent transition-colors cursor-pointer'
         >
           <FaTimes size={20} />
-        </motion.button>
+        </button>
         <div className='border-b border-gray-700 pb-4 mb-4'>
           <h3 className='text-xl font-bold text-accent'>
             {message.subject || '(No Subject)'}
@@ -73,7 +69,6 @@ const MessageDetailModal = ({
           </p>
         </div>
         <div className='prose prose-sm prose-invert max-w-none max-h-[60vh] overflow-y-auto custom-scrollbar pr-2'>
-          {/* Using prose classes to style the message content for readability */}
           <p>{message.message}</p>
         </div>
       </motion.div>
@@ -110,6 +105,40 @@ export default function MessagesPage() {
   useEffect(() => {
     fetchMessages();
   }, [fetchMessages]);
+
+  const markAsRead = async (messageId: number) => {
+    // Update the local state immediately for a responsive UI
+    setMessages((currentMessages) =>
+      currentMessages.map((msg) =>
+        msg.id === messageId ? { ...msg, read: true } : msg
+      )
+    );
+
+    // Update the database in the background
+    const { error } = await supabase
+      .from('messages')
+      .update({ read: true })
+      .eq('id', messageId);
+
+    if (error) {
+      console.error('Error marking message as read:', error);
+      // Optional: Revert UI change on error
+      setMessages((currentMessages) =>
+        currentMessages.map((msg) =>
+          msg.id === messageId ? { ...msg, read: false } : msg
+        )
+      );
+    }
+  };
+
+  const handleSelectMessage = (message: Message) => {
+    // If the message is unread, mark it as read
+    if (!message.read) {
+      markAsRead(message.id);
+    }
+    // Then, show the message detail modal
+    setSelectedMessage(message);
+  };
 
   const handleDelete = async (id: number) => {
     if (
@@ -208,15 +237,24 @@ export default function MessagesPage() {
                 {messages.map((message) => (
                   <tr
                     key={message.id}
-                    onClick={() => setSelectedMessage(message)}
-                    className='hover:bg-accent/5 cursor-pointer transition-colors'
+                    onClick={() => handleSelectMessage(message)}
+                    className={`hover:bg-accent/5 cursor-pointer transition-colors ${
+                      !message.read ? 'bg-accent/5' : ''
+                    }`}
                   >
                     <td className='px-6 py-4 whitespace-nowrap'>
-                      <div className='text-sm font-medium text-primary-text'>
-                        {message.name}
-                      </div>
-                      <div className='text-sm text-gray-400'>
-                        {message.email}
+                      <div className='flex items-center'>
+                        {!message.read && (
+                          <span className='w-2 h-2 bg-pink-500 rounded-full mr-3 flex-shrink-0'></span>
+                        )}
+                        <div>
+                          <div className='text-sm font-medium text-primary-text'>
+                            {message.name}
+                          </div>
+                          <div className='text-sm text-gray-400'>
+                            {message.email}
+                          </div>
+                        </div>
                       </div>
                     </td>
                     <td className='px-6 py-4 whitespace-nowrap text-sm text-primary-text/90'>
