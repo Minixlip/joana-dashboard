@@ -18,7 +18,22 @@
   --button-text: #ffffff;
   --button-hover:  #444444;
 
-  /* Accent Color */
+  --primary-background-rgb: 15, 23, 42; /* Dark Slate Blue, like slate-900 */
+  --secondary-background-rgb: 30, 41, 59; /* Slightly Lighter Slate, like slate-800 */
+  --input-background-rgb: 51, 65, 85; /* Even Lighter Slate, like slate-700 */
+  --border-rgb: 71, 85, 105; /* Subtle Border, like slate-600 */
+
+  --primary-text-rgb: 226, 232, 240; /* Off-white, like slate-200 */
+  --secondary-text-rgb: 148, 163, 184; /* Muted Gray, like slate-400 */
+
+  --accent-rgb: 229, 192, 123; /* A warm, academic gold */
+  
+  --success-rgb: 74, 222, 128; /* Green for success messages */
+  --error-rgb: 248, 113, 113; /* Red for error messages */
+
+  /* Font variables from Next.js font loader */
+  --font-geist-sans: 'Geist', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
   
 }
 
@@ -51,6 +66,50 @@ body {
 }
 
 
-input{
-  padding: 10px;
+/* Reusable class for form inputs and textareas */
+.form-input,
+.form-textarea {
+  width: 100%;
+  border-radius: 0.5rem; /* rounded-lg */
+  border: 1px solid rgb(var(--border-rgb));
+  background-color: rgb(var(--input-background-rgb) / 0.4);
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+  font-size: 1rem; /* text-base */
+  color: rgb(var(--primary-text-rgb));
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  transition: all 200ms ease-in-out;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgb(var(--primary-text-rgb) / 0.5);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: rgb(var(--accent-rgb));
+  box-shadow: 0 0 0 2px rgb(var(--primary-background-rgb)), 0 0 0 4px rgb(var(--accent-rgb));
+}
+
+/* Specific style for textarea to avoid horizontal resizing */
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Custom scrollbar for better aesthetics in scrollable areas */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgb(var(--secondary-background-rgb));
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgb(var(--input-background-rgb));
+    border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--border-rgb));
 }

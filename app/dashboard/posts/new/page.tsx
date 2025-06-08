@@ -184,6 +184,9 @@ export default function NewPostPage() {
           >
             URL Slug
           </label>
+          <span className='text-red-500'>
+            Do not change this value it will be automatic
+          </span>
           <input
             id='slug'
             {...register('slug')}
