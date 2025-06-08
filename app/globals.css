@@ -3,26 +3,32 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --primary-background-rgb: 15, 23, 42; /* Dark Slate Blue, like slate-900 */
-  --secondary-background-rgb: 30, 41, 59; /* Slightly Lighter Slate, like slate-800 */
-  --input-background-rgb: 51, 65, 85; /* Even Lighter Slate, like slate-700 */
-  --border-rgb: 71, 85, 105; /* Subtle Border, like slate-600 */
+  --secondary-background: #161616;
+  --accent: #bfa76f;
+ 
+  /* Foreground / Text */
+  --primary-text: #ffffff;
+  --secondary-text:  #cccccc;
+  --subtext: #888888;
 
-  --primary-text-rgb: 226, 232, 240; /* Off-white, like slate-200 */
-  --secondary-text-rgb: 148, 163, 184; /* Muted Gray, like slate-400 */
+  /* Borders / Lines / Dividers */
+  --border-light: #2e2e2e;
+  --hover-border: #444444;
+  --button-background: #2e2e2e;
+  --button-text: #ffffff;
+  --button-hover:  #444444;
 
-  --accent-rgb: 229, 192, 123; /* A warm, academic gold */
-  --link-rgb: 96, 165, 250; /* A clear, readable blue for links */
-
-  --success-rgb: 74, 222, 128; /* Green for success messages */
-  --error-rgb: 248, 113, 113;
+  /* Accent Color */
+  
 }
 
-@theme inline {
+@theme inline{
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --accent: var(--accent-rgb)
 
   --accent-rgb: 229, 192, 123; /* A warm, academic gold */
   --link-rgb: 96, 165, 250; /* A clear, readable blue for links */
@@ -42,4 +48,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+
+input{
+  padding: 10px;
 }

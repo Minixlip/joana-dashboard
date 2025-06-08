@@ -162,7 +162,7 @@ export default function EditPostPage() {
   if (isLoadingData) {
     return (
       <div className='flex items-center justify-center h-full'>
-        <FaSpinner className='animate-spin text-accent text-3xl' />
+        <FaSpinner className='animate-spin text-[#bfa76f] text-3xl' />
         <span className='ml-3 text-lg text-primary-text/80'>
           Loading Post Editor...
         </span>
@@ -178,7 +178,7 @@ export default function EditPostPage() {
     >
       <header className='flex justify-between items-center mb-8'>
         <div>
-          <h1 className='text-3xl font-bold font-serif text-accent'>
+          <h1 className='text-3xl font-bold font-serif text-[#bfa76f]'>
             Edit Post
           </h1>
           <p className='text-primary-text/70 mt-1'>
@@ -187,7 +187,7 @@ export default function EditPostPage() {
         </div>
         <Link
           href='/dashboard/posts'
-          className='flex items-center gap-2 text-sm text-accent hover:underline'
+          className='flex items-center gap-2 text-sm text-[#bfa76f] hover:underline'
         >
           <FaArrowLeft />
           Back to Posts
@@ -379,7 +379,7 @@ export default function EditPostPage() {
             type='submit'
             id='save-button'
             disabled={isSubmitting}
-            className='w-full flex items-center justify-center gap-2 py-2.5 px-6 border border-accent/50 rounded-lg text-sm font-semibold text-accent hover:bg-accent/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all'
+            className='w-full flex items-center justify-center gap-2 py-2.5 px-6 border border-[#bfa76f]/50 rounded-lg text-sm font-semibold text-[#bfa76f] hover:bg-[#bfa76f]/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all'
           >
             {isSubmitting ? <FaSpinner className='animate-spin' /> : <FaSave />}
             Save Changes
@@ -403,7 +403,7 @@ export default function EditPostPage() {
               type='submit'
               id='publish-button'
               disabled={isSubmitting}
-              className='w-full flex items-center justify-center gap-2 py-2.5 px-6 border border-transparent rounded-lg text-sm font-semibold text-white bg-accent hover:bg-opacity-85 disabled:opacity-50 disabled:cursor-not-allowed transition-all'
+              className='w-full flex items-center justify-center gap-2 py-2.5 px-6 border border-transparent rounded-lg text-sm font-semibold text-white bg-[#bfa76f] hover:bg-opacity-85 disabled:opacity-50 disabled:cursor-not-allowed transition-all'
             >
               {isSubmitting ? (
                 <FaSpinner className='animate-spin' />

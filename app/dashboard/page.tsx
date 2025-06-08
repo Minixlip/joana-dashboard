@@ -37,7 +37,7 @@ const StatCard = ({
   value: number;
   color: string;
 }) => (
-  <div className='bg-secondary-background p-6 rounded-xl shadow-lg flex items-center space-x-4'>
+  <div className='bg-[#161616] p-6 rounded-xl shadow-lg flex items-center space-x-4'>
     <div className={`p-3 rounded-full ${color}`}>
       <div className='text-white'>{icon}</div>
     </div>
@@ -147,7 +147,7 @@ export default function DashboardHomePage() {
   return (
     <motion.div variants={containerVariants} initial='hidden' animate='visible'>
       <motion.header variants={itemVariants} className='mb-10'>
-        <h1 className='text-3xl font-bold font-serif text-accent'>
+        <h1 className='text-3xl font-bold font-serif text-[#bfa76f]'>
           Dashboard Overview
         </h1>
         <p className='text-primary-text/70 mt-1'>
@@ -158,7 +158,7 @@ export default function DashboardHomePage() {
       {/* Stats Grid */}
       <motion.div
         variants={containerVariants}
-        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10'
+        className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-5'
       >
         <motion.div variants={itemVariants}>
           <StatCard
@@ -202,7 +202,7 @@ export default function DashboardHomePage() {
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
           <Link
             href='/dashboard/posts/new'
-            className='group bg-secondary-background p-6 rounded-xl shadow-lg hover:bg-accent/10 transition-colors flex justify-between items-center'
+            className='group bg-[#161616] p-6 rounded-xl shadow-lg hover:bg-accent/10 transition-colors flex justify-between items-center'
           >
             <div>
               <h3 className='font-bold text-lg text-accent'>Create New Post</h3>
@@ -214,7 +214,7 @@ export default function DashboardHomePage() {
           </Link>
           <Link
             href='/dashboard/posts'
-            className='group bg-secondary-background p-6 rounded-xl shadow-lg hover:bg-accent/10 transition-colors flex justify-between items-center'
+            className='group bg-[#161616] p-6 rounded-xl shadow-lg hover:bg-accent/10 transition-colors flex justify-between items-center'
           >
             <div>
               <h3 className='font-bold text-lg text-accent'>Manage Posts</h3>

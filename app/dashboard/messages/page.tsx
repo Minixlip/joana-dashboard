@@ -196,7 +196,7 @@ export default function MessagesPage() {
       </AnimatePresence>
 
       <header className='mb-8'>
-        <h1 className='text-3xl font-bold font-serif text-accent'>
+        <h1 className='text-3xl font-bold font-serif text-[#bfa76f]'>
           Contact Messages
         </h1>
         <p className='text-primary-text/70 mt-1'>
@@ -238,8 +238,8 @@ export default function MessagesPage() {
                   <tr
                     key={message.id}
                     onClick={() => handleSelectMessage(message)}
-                    className={`hover:bg-accent/5 cursor-pointer transition-colors ${
-                      !message.read ? 'bg-accent/5' : ''
+                    className={`hover:bg-[#bfa76f]/5 cursor-pointer transition-colors ${
+                      !message.read ? 'bg-[#bfa76f]/5' : ''
                     }`}
                   >
                     <td className='px-6 py-4 whitespace-nowrap'>

@@ -86,7 +86,7 @@ export default function PostsListPage() {
   if (loading) {
     return (
       <div className='flex items-center justify-center h-full'>
-        <FaSpinner className='animate-spin text-accent text-3xl' />
+        <FaSpinner className='animate-spin text-[#bfa76f] text-3xl' />
         <span className='ml-3 text-lg text-primary-text/80'>
           Loading Posts...
         </span>
@@ -111,7 +111,7 @@ export default function PostsListPage() {
     >
       <header className='flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4'>
         <div>
-          <h1 className='text-3xl font-bold font-serif text-accent'>
+          <h1 className='text-3xl font-bold font-serif text-[#bfa76f]'>
             Blog Posts
           </h1>
           <p className='text-primary-text/70 mt-1'>
@@ -120,7 +120,7 @@ export default function PostsListPage() {
         </div>
         <Link
           href='/dashboard/posts/new'
-          className='inline-flex items-center gap-2 py-2 px-5 rounded-lg text-sm font-semibold text-white bg-accent hover:bg-opacity-85 transition-all duration-200 ease-in-out transform active:scale-95 hover:scale-105'
+          className='inline-flex items-center gap-2 py-2 px-5 rounded-lg text-sm font-semibold text-white bg-[#bfa76f] hover:bg-opacity-85 transition-all duration-200 ease-in-out transform active:scale-95 hover:scale-105'
         >
           <FaPlus />
           Create New Post
@@ -164,12 +164,12 @@ export default function PostsListPage() {
                     custom={index}
                     initial='hidden'
                     animate='visible'
-                    className='hover:bg-accent/5 transition-colors'
+                    className='hover:bg-[#bfa76f]/5 transition-colors'
                   >
                     <td className='px-6 py-4 whitespace-nowrap'>
                       <Link
                         href={`/dashboard/posts/edit/${post.id}`}
-                        className='text-sm font-medium text-primary-text hover:text-accent'
+                        className='text-sm font-medium text-primary-text hover:text-[#bfa76f]'
                       >
                         {post.title}
                       </Link>
@@ -193,14 +193,14 @@ export default function PostsListPage() {
                         onClick={() =>
                           router.push(`/dashboard/posts/edit/${post.id}`)
                         }
-                        className='p-2 rounded-full text-gray-400 hover:bg-gray-700 hover:text-white transition-colors'
+                        className='p-2 rounded-full text-gray-400 hover:bg-gray-700 hover:text-white transition-colors cursor-pointer'
                         title='Edit Post'
                       >
                         <FaEdit />
                       </button>
                       <button
                         onClick={() => handleDelete(post.id, post.title)}
-                        className='p-2 rounded-full text-gray-400 hover:bg-red-500/20 hover:text-red-300 transition-colors'
+                        className='p-2 rounded-full text-gray-400 hover:bg-red-500/20 hover:text-red-300 transition-colors cursor-pointer'
                         title='Delete Post'
                       >
                         <FaTrash />
