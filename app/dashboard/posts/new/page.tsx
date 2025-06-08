@@ -109,19 +109,27 @@ export default function NewPostPage() {
       return;
     }
 
+    // Prepare the data for submission
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const submissionData: any = {
+      ...data,
+      author_id: authorId,
+      author_name: 'Joana Agostinho', // Or get from user metadata
+      tags: data.tags ? data.tags.split(',').map((tag) => tag.trim()) : [],
+      is_published: isPublishing,
+      published_at: isPublishing ? new Date().toISOString() : null,
+      created_at: new Date().toISOString(),
+    };
+
+    // **THE FIX**: If cover_image_url is empty, delete the key
+    // so that Supabase applies its own default value.
+    if (!submissionData.cover_image_url) {
+      delete submissionData.cover_image_url;
+    }
+
     const { data: insertedData, error } = await supabase
       .from('posts')
-      .insert([
-        {
-          ...data,
-          author_id: authorId,
-          author_name: 'Joana Agostinho', // Or get from user metadata
-          tags: data.tags ? data.tags.split(',').map((tag) => tag.trim()) : [],
-          is_published: isPublishing,
-          published_at: isPublishing ? new Date().toISOString() : null,
-          created_at: new Date().toISOString(),
-        },
-      ])
+      .insert([submissionData])
       .select()
       .single();
 
@@ -184,9 +192,6 @@ export default function NewPostPage() {
           >
             URL Slug
           </label>
-          <span className='text-red-500'>
-            Do not change this value it will be automatic
-          </span>
           <input
             id='slug'
             {...register('slug')}
@@ -339,7 +344,7 @@ export default function NewPostPage() {
             type='submit'
             id='save-draft-button'
             disabled={isSubmitting}
-            className='w-full flex items-center justify-center gap-2 py-2.5 px-6 border border-[#bfa76f]/50 rounded-lg text-sm font-semibold text-[#bfa76f] hover:bg-[#bfa76f]/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer'
+            className='w-full flex items-center justify-center gap-2 py-2.5 px-6 border border-[#bfa76f]/50 rounded-lg text-sm font-semibold text-[#bfa76f] hover:bg-[#bfa76f]/10 disabled:opacity-50 disabled:cursor-not-allowed transition-all'
           >
             {isSubmitting ? <FaSpinner className='animate-spin' /> : <FaSave />}
             Save as Draft
@@ -348,7 +353,7 @@ export default function NewPostPage() {
             type='submit'
             id='publish-button'
             disabled={isSubmitting}
-            className='w-full flex items-center justify-center gap-2 py-2.5 px-6 border border-transparent rounded-lg text-sm font-semibold text-white bg-[#bfa76f] hover:bg-opacity-85 disabled:opacity-50 disabled:cursor-not-allowed transition-all cursor-pointer'
+            className='w-full flex items-center justify-center gap-2 py-2.5 px-6 border border-transparent rounded-lg text-sm font-semibold text-white bg-[#bfa76f] hover:bg-opacity-85 disabled:opacity-50 disabled:cursor-not-allowed transition-all'
           >
             {isSubmitting ? (
               <FaSpinner className='animate-spin' />
