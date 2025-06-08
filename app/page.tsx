@@ -1,9 +1,6 @@
-import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <div>
-      <Link href={'/dashboard'}>Dashboard</Link>
-    </div>
-  );
+  // Permanently redirect to the dashboard
+  redirect('/dashboard');
 }
